@@ -2,11 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import RadioButtons, Slider, CheckButtons, Button
 from matplotlib.animation import FuncAnimation
-
+import math
+i = 0
 def bezier(t, control_points):
     n = len(control_points) - 1
     return sum(
-        np.math.comb(n, i) * (1 - t)**(n - i) * t**i * np.array(control_points[i])
+        math.comb(n, i) * (1 - t)**(n - i) * t**i * np.array(control_points[i])
         for i in range(n + 1)
     )
 
@@ -31,7 +32,7 @@ def update_plot(val=None):
         control_lines.set_data(x, y)
         
         t = t_slider.val
-        if slider_mode and not animating:
+        if slider_mode or animating:
             t_values = np.linspace(0, t, 100)
         else:
             t_values = np.linspace(0, 1, 100)
@@ -55,7 +56,7 @@ def update_plot(val=None):
         point_labels.append(label)
     
     fig.canvas.draw()
-    fig.canvas.flush_events()
+    # fig.canvas.flush_events()
 
 def on_press(event):
     global dragging_point, mode
@@ -108,12 +109,17 @@ def animate(frame):
     update_plot()
     return curve, point_t, control_lines
 
+def on_animation_complete():
+    global animating
+    animating = False
+    print("Animation complete!")
+
 def start_animation(event):
     global anim
-    anim = FuncAnimation(fig, animate, frames=np.linspace(0, 100, 101),
-                         interval=50, blit=False, repeat=False)
+    anim = FuncAnimation(fig, animate, frames=np.linspace(0, 101, 100),
+                         interval=1, blit=False, repeat=False)
     anim._start()
-    plt.draw()
+    anim.event_source.add_callback(on_animation_complete)
 
 rax = plt.axes([0.81, 0.5, 0.18, 0.15])
 radio = RadioButtons(rax, ('Add', 'Move', 'Remove'))

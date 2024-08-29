@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Bézier Curve</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <canvas id="bezierCanvas"></canvas>
+        <div id="controls">
+            <div>
+                <input type="radio" id="addMode" name="mode" value="add" checked>
+                <label for="addMode">Add</label>
+                <input type="radio" id="moveMode" name="mode" value="move">
+                <label for="moveMode">Move</label>
+                <input type="radio" id="removeMode" name="mode" value="remove">
+                <label for="removeMode">Remove</label>
+            </div>
+            <div>
+                <input type="checkbox" id="sliderMode" checked>
+                <label for="sliderMode">Slider Mode</label>
+            </div>
+            <div>
+                <input type="range" id="tSlider" min="0" max="1" step="0.01" value="0">
+                <label for="tSlider">t: <span id="tValue">0</span></label>
+            </div>
+            <button id="animateButton">Animate</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

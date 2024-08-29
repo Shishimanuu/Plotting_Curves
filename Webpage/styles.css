@@ -12,11 +12,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #bezierCanvas {
-    border: 1px solid #000;
-    background-color: #fff;
+    border: 2px solid #333;
+    background-color: #e6f3ff;
+    border-radius: 5px;
 }
 
 #controls {
@@ -34,4 +39,19 @@ body {
 
 #tSlider {
     width: 200px;
+    
+}
+
+#animateButton {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#animateButton:hover {
+    background-color: #45a049;
 }

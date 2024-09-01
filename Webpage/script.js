@@ -36,7 +36,7 @@ function drawCurve(t) {
     ctx.moveTo(start[0], start[1]);
 
     const steps = 100;
-    const maxT = sliderMode ? t : 1;
+    const maxT = (sliderMode || animating) ? t : 1;
     for (let i = 1; i <= steps; i++) {
         const t = (i / steps) * maxT;
         const point = bezier(t, controlPoints);

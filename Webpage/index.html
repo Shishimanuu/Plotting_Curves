@@ -19,12 +19,12 @@
                 <label for="removeMode">Remove points</label>
             </div>
             <div>
-                <input type="checkbox" id="sliderMode" checked>
-                <label for="sliderMode">Draw Curve till t</label>
-                <input type="range" id="tSlider" min="0" max="1" step="0.01" value="0">
-                <label for="tSlider">t: <span id="tValue">0</span></label>
+                <input type="range" id="tSlider" min="0.00" max="1.00" step="0.01" value="0">
+                <label for="tSlider">t : <span id="tValue">0</span></label>
+                
             </div>
             <button id="animateButton">Animate</button>
+            <button id="resetButton">Reset Canvas</button>
         </div>
     </div>
     <script src="script.js"></script>

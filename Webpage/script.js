@@ -83,6 +83,14 @@ function updateCanvas() {
     drawPointAtT(t);
 }
 
+function resetCanvas() {
+    controlPoints = [];
+    document.getElementById('tSlider').value = 0;
+    document.getElementById('tValue').textContent = '0';
+    updateCanvas();
+}
+
+
 canvas.addEventListener('mousedown', (e) => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -133,10 +141,6 @@ document.querySelectorAll('input[name="mode"]').forEach((radio) => {
     });
 });
 
-document.getElementById('sliderMode').addEventListener('change', (e) => {
-    sliderMode = e.target.checked;
-    updateCanvas();
-});
 
 document.getElementById('tSlider').addEventListener('input', (e) => {
     document.getElementById('tValue').textContent = e.target.value;
@@ -144,7 +148,7 @@ document.getElementById('tSlider').addEventListener('input', (e) => {
 });
 
 document.getElementById('animateButton').addEventListener('click', () => {
-    if (animating) return;
+    if (controlPoints == []) return;
     animating = true;
     const slider = document.getElementById('tSlider');
     const startTime = performance.now();
@@ -167,4 +171,5 @@ document.getElementById('animateButton').addEventListener('click', () => {
     requestAnimationFrame(animate);
 });
 
+document.getElementById('resetButton').addEventListener('click', resetCanvas);
 updateCanvas();
